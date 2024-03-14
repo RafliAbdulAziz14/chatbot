@@ -1,4 +1,4 @@
-# Contoh kode untuk menginisialisasi chatbot menggunakan Python dan library Natural Language Toolkit (NLTK)
+# chatbot.py
 
 import nltk
 from nltk.chat.util import Chat, reflections
@@ -8,6 +8,8 @@ pairs = [
     # Contoh pola pertanyaan yang dapat dikenali oleh chatbot
 ]
 
+fallback_responses = ["Mohon maaf, data tidak ditemukan."]
+
 chatbot = Chat(pairs, reflections)
 
 def main():
@@ -15,7 +17,10 @@ def main():
     while True:
         user_input = input("Anda: ")
         response = chatbot.respond(user_input)
-        print("Chatbot:", response)
+        if not response:
+            print("Chatbot:", fallback_responses[0])
+        else:
+            print("Chatbot:", response)
 
 if __name__ == "__main__":
     main()
